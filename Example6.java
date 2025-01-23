@@ -33,8 +33,5 @@ public class Example6 {
             System.out.println(listA.get(i));
         }
 
-
-
-
     }
 }
