@@ -1,0 +1,43 @@
+package collectionframework;
+import java.util.*;
+
+/// Collection Assignment-1
+/// LinkedList q3
+
+public class Example10 {
+    public static void main(String[] args) {
+        LinkedList<Integer> intList=new LinkedList<>(List.of(20,30,40,50));
+        intList.addFirst(10);
+        intList.addLast(60);
+        intList.add(2,25);
+        LinkedList<Integer> ll2=new LinkedList<>(List.of(70,80,90));
+        intList.addAll(ll2);
+        System.out.println("Final result Of Linked List1 :" +intList);
+
+        System.out.println("List contains 30? :" +intList.contains(30));
+        
+
+        LinkedList<Character> charList=new LinkedList<>(List.of('a','b','c'));
+        System.out.println("Character list :" +charList);
+
+//       LinkedList<Object> mixList=new LinkedList<>();
+//       mixList.addAll(intList);
+//       mixList.addAll(3,charList);
+//       System.out.println("Combining character list at position 3 of integer linked list : " + mixList);
+//
+
+
+       LinkedList<Integer> charToIntList=new LinkedList<>();
+       for(char c : charList )
+       {
+           charToIntList.add((int)c);
+       }
+        System.out.println("ASCII Linked List: " + charToIntList);
+
+        System.out.println("List After Adding Both Lists : " );
+        intList.addAll(3,charToIntList);
+        System.out.println(intList);
+
+    }
+
+}
