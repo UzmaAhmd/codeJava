@@ -1,0 +1,37 @@
+//2. Problem:
+//Create a user-defined exception InsufficientFundsException. Implement a program where a
+//user tries to withdraw money from a bank account, but an exception is thrown if the balance is
+//insufficient.
+//Expected Features:
+//• Define InsufficientFundsException class.
+//• Check if withdrawal amount exceeds balance and throw exception if necessary
+
+package exceptionsinjava;
+
+import exceptionsinjava.exceptions.InsufficientFundsExceeption;
+
+import java.util.Scanner;
+
+public class Example10Exception {
+    public static void calculateFunds(int withdrawAmt) throws InsufficientFundsExceeption{
+       int balance=300000;
+       final int minWithdrawAmt=50;
+        if(withdrawAmt<minWithdrawAmt || withdrawAmt>balance){
+            throw new InsufficientFundsExceeption("Enter amount greater than balance " +balance +" and less than withdraw amount "+minWithdrawAmt);
+        }
+        System.out.println("Withdrawn amount : " +withdrawAmt);
+
+   }
+
+    public static void main(String[] args) {
+        Scanner enterAmount=new Scanner(System.in);
+        System.out.println("Enter withdraw amount : ");
+        Integer withdrawAmt= Integer.valueOf(enterAmount.next());
+        try {
+            calculateFunds(withdrawAmt);
+        }catch (InsufficientFundsExceeption e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+}
