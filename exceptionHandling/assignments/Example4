@@ -1,0 +1,85 @@
+//4. Problem:
+//Create an online exam system where a student can attempt an exam only if:
+//1. They have registered.
+//2. Their registration number is exactly 6 digits long.
+//3. They have paid the exam fees.
+//If any of these conditions are not met, throw custom exceptions:
+//• StudentNotRegisteredException
+//• InvalidRegistrationNumberException
+//• ExamFeeNotPaidException
+
+package exceptionsinjava;
+
+import codewithmoshexamples.Main;
+import exceptionsinjava.exceptions.ExamFeeNotPaidException;
+import exceptionsinjava.exceptions.InvalidRegistrationNumberException;
+import exceptionsinjava.exceptions.StudentNotRegisteredException;
+
+public class Example11Exception{
+    int[] registeredIDs={111111,111222,111333,111444,111555};
+
+
+    /// //PART 1////////
+    public void checkRegistration(int id) throws StudentNotRegisteredException {
+        if (!checkValidRegistration(id)) {
+            throw new StudentNotRegisteredException("ID not registered");
+        }
+    }
+    public boolean checkValidRegistration(int id){
+        for (int registeredId : registeredIDs) {
+                if (registeredId == id)
+                    return true;
+        }
+        return false;
+    }
+
+
+
+    //PART 2///
+    public void iDLength(int ID) throws InvalidRegistrationNumberException {
+        int length = String.valueOf(ID).length();
+        if (length !=6) {
+            throw new InvalidRegistrationNumberException("Invalid Registration Number! Should be atleast 6 digit long! ");
+        }
+    }
+
+
+
+
+    //PART 3///
+    public void ifFeePaid(boolean feePaid) throws ExamFeeNotPaidException {
+        if (!feePaid) {
+            throw new ExamFeeNotPaidException("Exam fee not paid!");
+        }
+
+    }
+
+
+
+
+    //TO CHECK EACH STUDENT'S CREDENTIALS
+    public void isStudentEligible(int regID, boolean isFeePaid) {
+        try {
+            iDLength(regID);
+            checkRegistration(regID);
+            ifFeePaid(isFeePaid);
+            System.out.println("Student with id " +regID + " is allowed to attempt for the exam as fee paid status is " +isFeePaid);
+
+        } catch (StudentNotRegisteredException | ExamFeeNotPaidException | InvalidRegistrationNumberException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
+
+
+    public static void main(String[] args) {
+        Example11Exception Student = new Example11Exception();
+        Student.isStudentEligible(11122, false);
+        Student.isStudentEligible(1122,true);
+        Student.isStudentEligible(111333,true);
+
+
+    }
+
+}
